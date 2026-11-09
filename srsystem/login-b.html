@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="../styles/common.css">
   <link rel="stylesheet" href="assets/auth.css">
   <link rel="stylesheet" href="assets/brand.css?v=2">
-  <link rel="stylesheet" href="assets/logo.css?v=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=SRSystem&display=swap">
   <style>
     /* 시안 B — Sky (확정안) : 톤온톤 하늘 + 흐르는 리본 위 중앙 카드 + POLY/CANB 브랜드 탭 */
@@ -39,7 +38,7 @@
     /* 테마 토글만 우측 상단에 띄움 */
     .b-top { position: absolute; top: 0; right: 0; z-index: 2; display: flex; align-items: center; height: 72px; padding: 0 var(--space-6); }
 
-    /* SR·System 워드마크(Inter 800) + 로그인 카드를 한 묶음으로 세로 가운데, 사이 간격 32px */
+    /* SRSystem 워드마크(Inter 800, SR만 브랜드 컬러 — 로고 2안에서 마크 제외) + 로그인 카드를 한 묶음으로 세로 가운데, 사이 간격 32px */
     .b-main {
       display: grid; grid-template-columns: minmax(0, 460px);
       justify-content: center; align-content: center; justify-items: center;
@@ -47,15 +46,7 @@
       padding: var(--space-16) var(--space-6) var(--space-10);
     }
     .b-mark .product-name { font-size: 45px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
-    .wm-dot {
-      display: inline-block;
-      width: .2em; height: .2em;
-      margin: 0 .1em 0 .06em;
-      border-radius: 50%;
-      background: var(--color-primary);
-      vertical-align: .25em;
-      transition: background-color .45s ease;
-    }
+    .b-mark .product-name b { font-weight: inherit; color: var(--color-primary); transition: color .45s ease; }
     .b-card {
       --b-card-line: var(--color-primary-a10);
       --b-card-glow: var(--color-primary-a25);
@@ -103,7 +94,7 @@
     </header>
     <main class="b-main">
       <a class="product b-mark" href="#" aria-label="SRSystem 홈">
-        <span class="product-name">SR<span class="wm-dot" aria-hidden="true"></span>System</span>
+        <span class="product-name"><b>SR</b>System</span>
       </a>
       <section class="b-card" aria-label="로그인">
         <div class="brand-tabs" role="tablist" aria-label="브랜드 선택">
@@ -165,6 +156,5 @@
   <script src="../js/layout.js"></script>
   <script src="assets/auth.js"></script>
   <script src="assets/brand.js?v=2"></script>
-  <script src="assets/logo.js?v=1"></script>
 </body>
 </html>
