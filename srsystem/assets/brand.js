@@ -1,6 +1,6 @@
 /* ==========================================================================
    SRSystem Login — 브랜드 전환 (POLY ↔ CANB)
-   - <html data-brand> 첫 지정은 head 인라인 스크립트(깜빡임 방지), 이 파일은 탭·저장·로고 전환 담당
+   - <html data-brand> 첫 지정은 head 인라인 스크립트(깜빡임 방지), 이 파일은 탭·저장 담당
    - 마지막 선택 유지: localStorage 'srsBrand' / 링크로 지정: ?brand=canb
    - 탭 키보드: ←/→, Home/End (WAI-ARIA Tabs)
    ========================================================================== */
@@ -9,7 +9,6 @@
 
   var root = document.documentElement;
   var KEY = 'srsBrand';
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* CANB 마크 — canb-english.com 공식 로고(img/logo.svg)의 CANB 심볼 4도형 */
   document.body.insertAdjacentHTML('afterbegin',
@@ -20,7 +19,6 @@
   if (!tabs.length) return;
   var panel   = document.getElementById('brandPanel');
   var field   = document.getElementById('brandField');
-  var product = document.querySelector('.b-top .product');
 
   function current() { return root.getAttribute('data-brand') === 'canb' ? 'canb' : 'poly'; }
 
@@ -41,11 +39,6 @@
     try { localStorage.setItem(KEY, b); } catch (e) {}
     sync(b);
     if (!changed) return;
-    if (product && !reduceMotion) {
-      product.classList.remove('is-brand-swap');
-      void product.offsetWidth;
-      product.classList.add('is-brand-swap');
-    }
     window.dispatchEvent(new CustomEvent('auth:input'));                      /* 시안 B 리본 물결 */
     window.dispatchEvent(new CustomEvent('brandchange', { detail: { brand: b } }));
   }

@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="../styles/tokens.css">
   <link rel="stylesheet" href="../styles/common.css">
   <link rel="stylesheet" href="assets/auth.css">
-  <link rel="stylesheet" href="assets/brand.css">
+  <link rel="stylesheet" href="assets/brand.css?v=2">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=SRSystem&display=swap">
   <style>
     /* 시안 B — Sky (확정안) : 톤온톤 하늘 + 흐르는 리본 위 중앙 카드 + POLY/CANB 브랜드 탭 */
     @property --b-glow-1 { syntax: '<color>'; inherits: false; initial-value: transparent; }
@@ -34,13 +35,11 @@
     .b-waves path { fill: none; stroke: var(--color-primary); stroke-width: 1.2; vector-effect: non-scaling-stroke; transition: stroke .6s ease; }
 
     .b-page { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
-    .b-top { display: flex; align-items: center; justify-content: space-between; height: 96px; padding: 0 var(--space-6) 0 var(--space-10); }
-    /* 로고 2배 (Poly 22→44px). CANB 마크는 Poly와 같은 너비가 되도록 높이 보정 */
-    .b-top .product { gap: var(--space-6); }
-    .b-top .product-logo { height: 44px; }
-    .b-top .logo-canb { height: 48.8px; }
-    .b-top .product-sep { height: 28px; }
-    .b-top .product-name { font-size: 30px; letter-spacing: -0.02em; }
+    /* 헤더: 브랜드 로고 없이 SRSystem 워드마크만 가운데 (Inter 800, 좁은 자간으로 로고처럼) */
+    .b-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 96px; padding: 0 var(--space-6); }
+    .b-top .product { grid-column: 2; }
+    .b-top .icon-btn { grid-column: 3; justify-self: end; }
+    .b-top .product-name { font-size: 30px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
 
     .b-main { display: grid; grid-template-columns: minmax(0, 460px); justify-content: center; align-items: center; padding: var(--space-6) var(--space-6) var(--space-10); }
     .b-card {
@@ -72,12 +71,8 @@
     [data-theme="dark"] .b-card { background: var(--color-bg-subtle); border-color: var(--color-border); box-shadow: 0 32px 80px -24px rgba(0,0,0,0.7); }
 
     @media (max-width: 640px) {
-      .b-top { height: 72px; padding: 0 var(--space-3) 0 var(--space-5); }
-      .b-top .product { gap: var(--space-4); }
-      .b-top .product-logo { height: 32px; }
-      .b-top .logo-canb { height: 35.5px; }
-      .b-top .product-sep { height: 20px; }
-      .b-top .product-name { font-size: 22px; }
+      .b-top { height: 72px; padding: 0 var(--space-3); }
+      .b-top .product-name { font-size: 24px; }
       .b-main { padding: var(--space-2) var(--space-4) var(--space-8); align-items: start; grid-template-columns: minmax(0, 1fr); }
       .b-card-body { padding: var(--space-6); }
     }
@@ -91,9 +86,6 @@
   <div class="b-page">
     <header class="b-top">
       <a class="product" href="#" aria-label="SRSystem 홈">
-        <svg class="product-logo logo-poly" role="img" aria-label="POLY"><use href="#poly-wordmark"/></svg>
-        <svg class="product-logo logo-canb" role="img" aria-label="CANB"><use href="#canb-wordmark"/></svg>
-        <span class="product-sep" aria-hidden="true"></span>
         <span class="product-name">SRSystem</span>
       </a>
       <button type="button" class="icon-btn" id="theme-toggle" aria-label="다크 모드로 전환"></button>
@@ -158,6 +150,6 @@
 
   <script src="../js/layout.js"></script>
   <script src="assets/auth.js"></script>
-  <script src="assets/brand.js"></script>
+  <script src="assets/brand.js?v=2"></script>
 </body>
 </html>

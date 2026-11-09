@@ -51,16 +51,6 @@
   box-shadow: 0 0 0 3px var(--color-primary-a30);
 }
 
-/* ── 로고: 브랜드별 1개만 표시 (두 로고는 같은 너비로 맞춰 'SRSystem' 위치 고정) ── */
-.logo-canb { display: none; aspect-ratio: 113.4 / 53; }
-[data-brand="canb"] .logo-poly { display: none; }
-[data-brand="canb"] .logo-canb { display: block; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .is-brand-swap .product-logo { animation: brand-logo-in .55s cubic-bezier(.2,.8,.2,1) both; }
-}
-@keyframes brand-logo-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
 /* ── 브랜드 탭 (kit .tabs/.tab-btn 언더라인 패턴 + 슬라이딩 인디케이터) ── */
 .brand-tabs {
   position: relative;
