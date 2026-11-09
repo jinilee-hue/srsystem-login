@@ -58,11 +58,7 @@
     .b-card .auth-form { max-width: none; }
     .b-foot { display: flex; justify-content: center; gap: var(--space-2); padding: 0 var(--space-6) var(--space-6); font-size: 12px; color: var(--color-text-tertiary); }
 
-    /* CANB — 키트 규칙: 배경·테두리·그림자는 중립 회색, 마젠타는 로고·탭·버튼·포커스 링에만 */
-    [data-brand="canb"] .b-sky { --b-glow-1: rgba(0,0,0,0.05); --b-glow-2: rgba(0,0,0,0.035); }
-    [data-brand="canb"] .b-waves { opacity: .7; }
-    [data-brand="canb"] .b-waves path { stroke: var(--color-text-primary); }
-    [data-brand="canb"] .b-card { --b-card-line: var(--color-border); --b-card-glow: rgba(0,0,0,0.16); }
+    /* CANB tone = POLY tone — 배경 번짐·물결·카드 테두리/그림자 모두 --color-primary 계열 토큰을 따라 브랜드색 톤온톤으로 바뀐다 */
 
     [data-theme="dark"] body.v-b { background: var(--color-bg); }
     [data-theme="dark"] .b-sky {
@@ -73,7 +69,6 @@
         radial-gradient(36% 40% at 92% 0%, var(--b-glow-2), transparent 70%),
         linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg) 100%);
     }
-    [data-brand="canb"][data-theme="dark"] .b-sky { --b-glow-1: rgba(255,255,255,0.05); --b-glow-2: rgba(255,255,255,0.035); }
     [data-theme="dark"] .b-card { background: var(--color-bg-subtle); border-color: var(--color-border); box-shadow: 0 32px 80px -24px rgba(0,0,0,0.7); }
 
     @media (max-width: 640px) {
