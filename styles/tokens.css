@@ -1,0 +1,168 @@
+/* styles/tokens.css — EduPoly Brand Design System Tokens */
+
+:root {
+  /* ── Poly Brand Blue ──────────────────────────── */
+  --color-primary:        #0066FF;   /* Poly Blue */
+  --color-primary-light:  #E8F0FF;   /* 배지·아이콘 배경 */
+  --color-primary-dark:   #0052CC;   /* 호버·강조 */
+  --color-primary-deeper: #003D99;   /* 가장 진한 블루 */
+
+  /* ── CANB Brand Magenta (멀티 브랜드 뷰 전용) ── */
+  --color-canb-primary:   #BC216D;
+  --color-canb-light:     #FAEAF3;
+
+  /* ── Neutral ────────────────────────────────── */
+  --color-bg:             #FFFFFF;
+  --color-bg-subtle:      #F7F8FA;
+  --color-bg-muted:       #EDEFF2;
+  --color-border:         #E2E5EA;
+  --color-border-strong:  #C4C8D0;
+
+  /* ── Text ───────────────────────────────────── */
+  --color-text-primary:   #111827;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary:  #9CA3AF;
+  --color-text-disabled:  #D1D5DB;
+
+  /* ── Semantic ────────────────────────────────── */
+  --color-success:        #0066FF;   /* Brand Blue — 완료·활성·정상 */
+  --color-success-light:  #E8F0FF;   /* 블루 틴트 배경 */
+  --color-warning:        #D97706;
+  --color-warning-light:  rgba(217,119,6,0.10);
+  --color-danger:         #DC2626;
+  --color-danger-light:   rgba(220,38,38,0.10);
+  --color-info:           #0066FF;
+  --color-info-light:     #E8F0FF;
+
+  /* ── Sidebar (라이트: 흰색) ─────────────────── */
+  --color-sidebar-bg:         #FFFFFF;
+  --color-sidebar-active:     #0066FF;
+  --color-sidebar-text:       rgba(0,0,0,0.52);
+  --color-sidebar-text-hover: #111827;
+  --color-sidebar-hover:      rgba(0,0,0,0.04);
+  --color-sidebar-border:     #E2E5EA;
+  --color-sidebar-section:    #9CA3AF;
+
+  /* ── Brand alpha — 버튼 hover·focus 색상 (JS BRAND_TOKENS에서 오버라이드) ─ */
+  --color-primary-a04: rgba(0,102,255,0.04);
+  --color-primary-a08: rgba(0,102,255,0.08);
+  --color-primary-a10: rgba(0,102,255,0.10);
+  --color-primary-a15: rgba(0,102,255,0.15);
+  --color-primary-a25: rgba(0,102,255,0.25);
+  --color-primary-a30: rgba(0,102,255,0.30);
+  --color-primary-a40: rgba(0,102,255,0.40);
+  --color-primary-a50: rgba(0,102,255,0.50);
+
+  /* ── Chart — 라이트 모드: #0066FF(rgb 0,102,255) 투명도 단계 ─ */
+  --chart-1: rgba(0,102,255,0.85);
+  --chart-2: rgba(0,102,255,0.60);
+  --chart-3: rgba(0,102,255,0.38);
+  --chart-4: rgba(0,102,255,0.22);
+  --chart-5: rgba(0,102,255,0.13);
+  --chart-6: rgba(0,102,255,0.07);
+
+  /* ── Typography ──────────────────────────────── */
+  --font-sans:  'Inter', 'Pretendard', -apple-system, sans-serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-lg:   17px;
+  --text-xl:   20px;
+  --text-2xl:  24px;
+  --text-3xl:  30px;
+  --text-4xl:  36px;
+
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+
+  /* ── Component Heights ──────────────────────── */
+  --input-height: 40px;
+
+  /* ── Spacing ─────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ── Border Radius ───────────────────────────── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* ── Shadow ──────────────────────────────────── */
+  --shadow-sm:  0 1px 2px 0 rgba(0,0,0,0.06);
+  --shadow-md:  0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+  --shadow-lg:  0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -2px rgba(0,0,0,0.05);
+
+  --border-default: 1px solid var(--color-border);
+  --border-strong:  1px solid var(--color-border-strong);
+}
+
+/* ── Dark Mode ───────────────────────────────── */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --color-bg:             #111111;
+  --color-bg-subtle:      #1A1A1A;
+  --color-bg-muted:       #252525;
+
+  /* Borders */
+  --color-border:         rgba(255,255,255,0.10);
+  --color-border-strong:  rgba(255,255,255,0.18);
+
+  /* Text */
+  --color-text-primary:   #F5F5F5;
+  --color-text-secondary: #9CA3AF;
+  --color-text-tertiary:  #6B7280;
+  --color-text-disabled:  #374151;
+
+  /* Primary light (아이콘·배지 배경) */
+  --color-primary-light:  rgba(0,102,255,0.22);
+
+  /* Brand alpha */
+  --color-primary-a04: rgba(0,102,255,0.04);
+  --color-primary-a08: rgba(0,102,255,0.08);
+  --color-primary-a10: rgba(0,102,255,0.10);
+  --color-primary-a15: rgba(0,102,255,0.15);
+  --color-primary-a25: rgba(0,102,255,0.25);
+  --color-primary-a30: rgba(0,102,255,0.30);
+  --color-primary-a40: rgba(0,102,255,0.40);
+  --color-primary-a50: rgba(0,102,255,0.50);
+
+  /* Semantic lights */
+  --color-success-light:  rgba(0,102,255,0.22);
+  --color-warning-light:  rgba(217,119,6,0.18);
+  --color-danger-light:   rgba(220,38,38,0.18);
+  --color-info-light:     rgba(0,102,255,0.20);
+
+  /* ── Chart — 다크 모드: 브랜드 원색(rgb 0,102,255) 투명도 단계 ──────── */
+  --chart-1: rgba(0,102,255,0.85);
+  --chart-2: rgba(0,102,255,0.60);
+  --chart-3: rgba(0,102,255,0.38);
+  --chart-4: rgba(0,102,255,0.22);
+  --chart-5: rgba(0,102,255,0.13);
+  --chart-6: rgba(0,102,255,0.07);
+
+  /* Sidebar (다크: 콘텐츠보다 진한 차콜) */
+  --color-sidebar-bg:         #0F0F0F;
+  --color-sidebar-text:       rgba(255,255,255,0.60);
+  --color-sidebar-text-hover: #FFFFFF;
+  --color-sidebar-hover:      rgba(255,255,255,0.07);
+  --color-sidebar-border:     rgba(255,255,255,0.08);
+  --color-sidebar-section:    rgba(255,255,255,0.32);
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.35);
+  --shadow-md:  0 4px 8px -1px rgba(0,0,0,0.40);
+  --shadow-lg:  0 10px 20px -3px rgba(0,0,0,0.50);
+}

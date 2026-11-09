@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐴 SRSystem 로그인 시안</title>
+  <script>(function(){try{var t=localStorage.getItem('epTheme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/common.css">
+  <style>
+    body { display: block; height: auto; min-height: 100vh; overflow: auto; background: var(--color-bg-subtle); -webkit-font-smoothing: antialiased; }
+    .hub { max-width: 1320px; margin: 0 auto; padding: var(--space-12) var(--space-10) var(--space-16); }
+    .hub-head .accent { display: block; width: 16px; height: 2px; margin-bottom: var(--space-3); background: var(--color-primary); }
+    .hub-head h1 { font-size: var(--text-3xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--color-text-primary); }
+    .hub-head p { margin-top: var(--space-2); font-size: var(--text-base); color: var(--color-text-secondary); }
+    .hub-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-10); }
+    .hub-card { display: flex; flex-direction: column; border-radius: var(--radius-lg); background: var(--color-bg); overflow: hidden; border: var(--border-default); transition: border-color .15s ease, box-shadow .15s ease; color: inherit; }
+    .hub-card:hover { border-color: var(--color-primary-a50); box-shadow: 0 16px 40px -20px var(--color-primary-a40); }
+    .hub-card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: var(--border-default); }
+    .hub-body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5) var(--space-6) var(--space-6); flex: 1; }
+    .hub-title { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); }
+    .hub-desc { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
+    .hub-ref { margin-top: auto; padding-top: var(--space-3); font-size: 12px; color: var(--color-text-tertiary); }
+    @media (max-width: 1024px) { .hub-grid { grid-template-columns: 1fr; } .hub { padding: var(--space-8) var(--space-5); } }
+  </style>
+</head>
+<body>
+  <main class="hub">
+    <header class="hub-head">
+      <span class="accent"></span>
+      <h1>SRSystem 로그인 시안</h1>
+      <p>Poly Dashboard Kit 토큰·컴포넌트 기반 3종 · 각 시안 우측 하단 도크에서 시안 전환·상태(오류·로딩·권한 요청) 미리보기</p>
+    </header>
+    <div class="hub-grid">
+      <a class="hub-card" href="login-a.html">
+        <img src="previews/a.png" alt="시안 A 미리보기">
+        <div class="hub-body">
+          <div class="hub-title"><span class="badge badge-primary">A</span>Flow — 브랜드 패널 분할형</div>
+          <p class="hub-desc">좌측 Poly Blue 패널에 SR 진행도(요청·접수·처리·완료)를 파이 그리드로 표현. 투명도 단계가 곧 진행도인 톤온톤 모티프가 천천히 흐릅니다.</p>
+          <p class="hub-ref">레퍼런스: Split 카드형(그라디언트 패널 + 폼), 단계 카드</p>
+        </div>
+      </a>
+      <a class="hub-card" href="login-b.html">
+        <img src="previews/b.png" alt="시안 B 미리보기">
+        <div class="hub-body">
+          <div class="hub-title"><span class="badge badge-neutral">B</span>Sky — 중앙 카드형</div>
+          <p class="hub-desc">옅은 블루 톤 배경에 중앙 단일 카드. 리본 물결이 위아래로 출렁이고, 커서가 지나가면 라인이 갈라지며, 입력할 때마다 물결이 퍼집니다. 현재 화면 구조와 가장 가까운 안입니다.</p>
+          <p class="hub-ref">레퍼런스: navos, 하늘 배경 글래스 카드</p>
+        </div>
+      </a>
+      <a class="hub-card" href="login-c.html">
+        <img src="previews/c.png" alt="시안 C 미리보기">
+        <div class="hub-body">
+          <div class="hub-title"><span class="badge badge-neutral">C</span>Poster — 다크 타이포형</div>
+          <p class="hub-desc">다크 포스터 위 대형 ‘SRSystem’ 워드마크를 톤온톤 단계로 페이드. 아이디·비밀번호를 입력할수록 글자가 차오르고 로그인하면 끝까지 채워지며, 커서 근처 글자가 밝아집니다.</p>
+          <p class="hub-ref">레퍼런스: 대형 타이포(Knocknock), 다크 프레임 분할형</p>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

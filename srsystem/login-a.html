@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐴 로그인 | SRSystem — 시안 A</title>
+  <script>(function(){try{var t=localStorage.getItem('epTheme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="assets/auth.css">
+  <style>
+    /* 시안 A — Flow : 좌측 브랜드 패널(진행도 필드) + 우측 폼 */
+    .a-shell {
+      min-height: 100vh; min-height: 100dvh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      padding: var(--space-4);
+    }
+    .a-brand {
+      --field-ink: #FFFFFF;
+      position: relative; isolation: isolate; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: calc(100dvh - var(--space-8));
+      padding: var(--space-10) var(--space-12) var(--space-12);
+      border-radius: var(--radius-xl);
+      background: var(--color-primary);
+      color: #FFFFFF;
+    }
+    .a-field {
+      position: absolute; inset: 0; z-index: -1;
+      -webkit-mask-image: radial-gradient(circle var(--field-r, 680px) at 100% 0%, #000 20%, transparent 100%);
+              mask-image: radial-gradient(circle var(--field-r, 680px) at 100% 0%, #000 20%, transparent 100%);
+    }
+    .a-field .pie {
+      position: absolute;
+      --track: color-mix(in srgb, var(--field-ink) 8%, transparent);
+      transition: --p .9s cubic-bezier(.2,.8,.2,1), --ink .9s ease, transform .38s ease, opacity .38s ease;
+    }
+    .a-field .pie.s0 { --p: 0;   --ink: color-mix(in srgb, var(--field-ink) 8%, transparent); }
+    .a-field .pie.s1 { --p: 25;  --ink: color-mix(in srgb, var(--field-ink) 38%, transparent); }
+    .a-field .pie.s2 { --p: 50;  --ink: color-mix(in srgb, var(--field-ink) 60%, transparent); }
+    .a-field .pie.s3 { --p: 75;  --ink: color-mix(in srgb, var(--field-ink) 85%, transparent); }
+    .a-field .pie.s4 { --p: 100; --ink: var(--field-ink); }
+    .a-field .pie.is-out { transform: scale(.6); opacity: 0; }
+    @media (prefers-reduced-motion: no-preference) {
+      .a-field .pie { animation: a-pie-in .8s cubic-bezier(.2,.8,.2,1) backwards; }
+    }
+    @keyframes a-pie-in { from { transform: scale(.3); opacity: 0; } }
+
+    .a-copy { max-width: 460px; }
+    .a-title {
+      font-size: var(--text-4xl);
+      font-weight: var(--weight-semibold);
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+    }
+    .a-sub { margin-top: var(--space-4); font-size: var(--text-base); line-height: 1.65; opacity: .88; }
+    .a-legend { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-8); }
+    .a-legend li {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      height: 32px; padding: 0 var(--space-3) 0 var(--space-2);
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.14);
+      font-size: var(--text-sm); font-weight: var(--weight-medium);
+    }
+    .a-legend .pie { width: 16px; height: 16px; --ink: #FFFFFF; --track: rgba(255,255,255,0.28); }
+
+    .a-main { display: flex; flex-direction: column; min-width: 0; }
+    .a-top {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; padding: 0 var(--space-2) 0 var(--space-10);
+    }
+    .a-top .product { visibility: hidden; }
+    .a-center { flex: 1; display: grid; place-items: center; padding: var(--space-8) var(--space-10) calc(56px + var(--space-8)); }
+
+    [data-theme="dark"] .a-brand { --field-ink: var(--color-primary); background: var(--color-bg-subtle); box-shadow: inset 0 0 0 1px var(--color-border); }
+    [data-theme="dark"] .a-legend li { background: rgba(255,255,255,0.06); }
+    [data-theme="dark"] .a-legend .pie { --ink: var(--color-primary); --track: rgba(255,255,255,0.14); }
+
+    @media (max-width: 1024px) {
+      .a-shell { grid-template-columns: 1fr; padding: 0; }
+      .a-brand { display: none; }
+      .a-top { padding: 0 var(--space-3) 0 var(--space-6); }
+      .a-top .product { visibility: visible; }
+      .a-center { padding: var(--space-8) var(--space-6) calc(56px + var(--space-8)); }
+    }
+  </style>
+</head>
+<body class="auth-page v-a" data-variant="a">
+  <div class="a-shell">
+    <aside class="a-brand" aria-label="SRSystem 소개">
+      <div class="a-field" data-flow-field aria-hidden="true"></div>
+      <a class="product product--on-color" href="#" aria-label="SRSystem 홈">
+        <svg class="product-logo" role="img" aria-label="Poly"><use href="#poly-wordmark"/></svg>
+        <span class="product-sep" aria-hidden="true"></span>
+        <span class="product-name">SRSystem</span>
+      </a>
+      <div class="a-copy">
+        <h2 class="a-title">요청부터 완료까지,<br>한 흐름으로.</h2>
+        <p class="a-sub">SR 등록부터 처리 현황 확인까지<br>SRSystem에서 한 번에 관리하세요.</p>
+        <ol class="a-legend" aria-label="SR 진행 단계">
+          <li><i class="pie" style="--p:25"></i>요청</li>
+          <li><i class="pie" style="--p:50"></i>접수</li>
+          <li><i class="pie" style="--p:75"></i>처리</li>
+          <li><i class="pie" style="--p:100"></i>완료</li>
+        </ol>
+      </div>
+    </aside>
+
+    <main class="a-main">
+      <div class="a-top">
+        <a class="product " href="#" aria-label="SRSystem 홈">
+        <svg class="product-logo" role="img" aria-label="Poly"><use href="#poly-wordmark"/></svg>
+        <span class="product-sep" aria-hidden="true"></span>
+        <span class="product-name">SRSystem</span>
+      </a>
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="다크 모드로 전환"></button>
+      </div>
+      <div class="a-center">
+        <div class="auth-form auth-enter">
+          <div class="auth-head">
+            <span class="auth-accent" aria-hidden="true"></span>
+            <h1 class="auth-title">로그인</h1>
+            <p class="auth-desc">SRSystem 계정으로 로그인하세요.</p>
+          </div>
+
+          <div class="auth-alert" id="loginAlert" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div><strong>아이디 또는 비밀번호가 일치하지 않습니다.</strong><p>입력한 내용을 다시 확인해 주세요.</p></div>
+          </div>
+
+          <form id="loginForm" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="loginId">아이디</label>
+              <input class="form-input" id="loginId" name="loginId" type="text" autocomplete="username" placeholder="아이디를 입력하세요" required aria-describedby="loginIdError">
+              <p class="field-error" id="loginIdError"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>아이디를 입력해 주세요.</p>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="password">비밀번호</label>
+              <div class="input-affix">
+                <input class="form-input" id="password" name="password" type="password" maxlength="20" autocomplete="current-password" placeholder="비밀번호를 입력하세요" required aria-describedby="passwordError">
+                <span class="badge badge-warning caps-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18v-6H5l7-7 7 7h-4v6H9z"/></svg>Caps Lock</span>
+                <button type="button" class="affix-btn" id="pwToggle" aria-label="비밀번호 표시" aria-pressed="false"></button>
+              </div>
+              <p class="field-error" id="passwordError"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>비밀번호를 입력해 주세요.</p>
+            </div>
+            <div class="auth-row">
+              <label class="check"><input type="checkbox" id="rememberId"><span class="check-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>아이디 저장</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="loginSubmit"><span class="btn-spinner" aria-hidden="true"></span><span class="btn-label">로그인</span></button>
+          </form>
+
+          <div class="or" role="separator">또는</div>
+
+          <button type="button" class="btn btn-secondary btn-block btn-google" id="googleLogin">
+            <span class="btn-spinner" aria-hidden="true"></span><svg class="g-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="btn-label">Google 계정으로 로그인</span><span class="badge badge-neutral g-domain" title="@edu-poly.com 메일 소속 직원만 사용할 수 있습니다">@edu-poly.com</span>
+          </button>
+
+          <div class="auth-help">
+            <span>로그인이 안 되나요?</span>
+            <button type="button" class="link-btn" id="openRequest">관리자에게 권한 요청<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/layout.js"></script>
+  <script src="assets/auth.js"></script>
+</body>
+</html>
