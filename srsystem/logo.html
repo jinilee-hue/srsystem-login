@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐴 SRSystem 로고 시안</title>
+  <script>(function(){try{var t=localStorage.getItem('epTheme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="assets/brand.css?v=2">
+  <link rel="stylesheet" href="assets/logo.css?v=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=SRSystem&display=swap">
+  <style>
+    body { display: block; height: auto; min-height: 100vh; overflow: auto; background: var(--color-bg-subtle); -webkit-font-smoothing: antialiased; }
+    .lb { max-width: 1320px; margin: 0 auto; padding: var(--space-12) var(--space-10) var(--space-16); }
+    .lb-top .accent { display: block; width: 16px; height: 2px; margin-bottom: var(--space-3); background: var(--color-primary); }
+    .lb-top h1 { font-size: var(--text-3xl); font-weight: var(--weight-semibold); letter-spacing: -0.02em; color: var(--color-text-primary); }
+    .lb-top p { margin-top: var(--space-2); font-size: var(--text-base); color: var(--color-text-secondary); }
+
+    .lb-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-10); }
+    .lb-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-bg); border: var(--border-default); }
+    .lb-title { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-text-primary); }
+    .lb-desc { min-height: 3.2em; font-size: var(--text-sm); line-height: 1.6; color: var(--color-text-secondary); }
+
+    .lb-stage { position: relative; display: grid; place-items: center; border-radius: var(--radius-md); background: var(--color-bg-subtle); }
+    .lb-hero { height: 176px; }
+    .lb-hero .srs-logo { --logo-h: 44px; }
+    .lb-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+    .lb-mini { height: 104px; }
+    .lb-mini .srs-logo { --logo-h: 24px; }
+    .lb-mini[data-theme="dark"] { background: var(--color-bg); }
+    .lb-tag { position: absolute; top: 8px; left: 10px; font-size: 11px; font-weight: var(--weight-medium); color: var(--color-text-tertiary); }
+
+    .lb-icons { display: flex; align-items: flex-end; gap: var(--space-6); height: 96px; padding: 0 var(--space-1) var(--space-1); }
+    .lb-icons figure { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .lb-icons figcaption { font-size: 11px; color: var(--color-text-tertiary); }
+    .lb-icons .s56 .srs-logo { --logo-h: 56px; }
+    .lb-icons .s32 .srs-logo { --logo-h: 32px; }
+    .lb-icons .s20 .srs-logo { --logo-h: 20px; }
+
+    .lb-shot { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-md); border: var(--border-default); }
+    .lb-card .btn { width: 100%; justify-content: center; margin-top: auto; }
+    @media (max-width: 1100px) { .lb-grid { grid-template-columns: minmax(0, 520px); justify-content: center; } }
+    @media (max-width: 640px) { .lb { padding: var(--space-8) var(--space-4) var(--space-12); } }
+  </style>
+</head>
+<body>
+  <main class="lb">
+    <header class="lb-top">
+      <span class="accent" aria-hidden="true"></span>
+      <h1>SRSystem 로고 시안</h1>
+      <p>로그인 화면 상단 SR·System 자리에 들어갈 로고 3종</p>
+    </header>
+
+    <div class="lb-grid">
+      <article class="lb-card">
+        <div class="lb-title"><span class="badge badge-primary">1</span>티켓</div>
+        <p class="lb-desc">SR(서비스 요청)을 티켓 모양 심볼로. 심볼 안에 SR, 옆에 System.</p>
+        <div class="lb-stage lb-hero"><span data-srs-logo="1"></span></div>
+        <div class="lb-pair">
+          <div class="lb-stage lb-mini" data-theme="dark"><span class="lb-tag">다크</span><span data-srs-logo="1"></span></div>
+          <div class="lb-stage lb-mini" data-brand="canb"><span class="lb-tag">CANB</span><span data-srs-logo="1"></span></div>
+        </div>
+        <div class="lb-icons">
+          <figure><span class="s56" data-srs-symbol="1"></span><figcaption>56</figcaption></figure>
+          <figure><span class="s32" data-srs-symbol="1"></span><figcaption>32</figcaption></figure>
+          <figure><span class="s20" data-srs-symbol="1"></span><figcaption>20</figcaption></figure>
+        </div>
+        <img class="lb-shot" src="previews/logo-1.png" alt="로그인 화면 적용 예 — 로고 1">
+        <a class="btn btn-secondary" href="login-b.html?logo=1">로그인 화면에서 보기</a>
+      </article>
+
+      <article class="lb-card">
+        <div class="lb-title"><span class="badge badge-primary">2</span>진행</div>
+        <p class="lb-desc">요청·접수·처리·완료 4단계를 브랜드 컬러 농도로 쌓은 심볼. SR만 브랜드 컬러.</p>
+        <div class="lb-stage lb-hero"><span data-srs-logo="2"></span></div>
+        <div class="lb-pair">
+          <div class="lb-stage lb-mini" data-theme="dark"><span class="lb-tag">다크</span><span data-srs-logo="2"></span></div>
+          <div class="lb-stage lb-mini" data-brand="canb"><span class="lb-tag">CANB</span><span data-srs-logo="2"></span></div>
+        </div>
+        <div class="lb-icons">
+          <figure><span class="s56" data-srs-symbol="2"></span><figcaption>56</figcaption></figure>
+          <figure><span class="s32" data-srs-symbol="2"></span><figcaption>32</figcaption></figure>
+          <figure><span class="s20" data-srs-symbol="2"></span><figcaption>20</figcaption></figure>
+        </div>
+        <img class="lb-shot" src="previews/logo-2.png" alt="로그인 화면 적용 예 — 로고 2">
+        <a class="btn btn-secondary" href="login-b.html?logo=2">로그인 화면에서 보기</a>
+      </article>
+
+      <article class="lb-card">
+        <div class="lb-title"><span class="badge badge-primary">3</span>모노그램</div>
+        <p class="lb-desc">큰 SR과 Service Request System 풀네임을 묶은 글자형 로고.</p>
+        <div class="lb-stage lb-hero"><span data-srs-logo="3"></span></div>
+        <div class="lb-pair">
+          <div class="lb-stage lb-mini" data-theme="dark"><span class="lb-tag">다크</span><span data-srs-logo="3"></span></div>
+          <div class="lb-stage lb-mini" data-brand="canb"><span class="lb-tag">CANB</span><span data-srs-logo="3"></span></div>
+        </div>
+        <div class="lb-icons">
+          <figure><span class="s56" data-srs-symbol="3"></span><figcaption>56</figcaption></figure>
+          <figure><span class="s32" data-srs-symbol="3"></span><figcaption>32</figcaption></figure>
+          <figure><span class="s20" data-srs-symbol="3"></span><figcaption>20</figcaption></figure>
+        </div>
+        <img class="lb-shot" src="previews/logo-3.png" alt="로그인 화면 적용 예 — 로고 3">
+        <a class="btn btn-secondary" href="login-b.html?logo=3">로그인 화면에서 보기</a>
+      </article>
+    </div>
+  </main>
+  <script src="assets/logo.js?v=1"></script>
+</body>
+</html>

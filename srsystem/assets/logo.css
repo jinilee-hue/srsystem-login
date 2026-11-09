@@ -1,0 +1,78 @@
+/* ==========================================================================
+   SRSystem 로고 시안 — 1 티켓 · 2 진행 · 3 모노그램
+   - 크기: --logo-h (기준 높이). 색: 심볼·강조 = var(--color-primary), 글자 = var(--color-text-primary)
+   - POLY/CANB(data-brand)·다크(data-theme) 토큰을 그대로 따른다 (요소 단위 스코프도 동작)
+   ========================================================================== */
+.srs-logo {
+  --logo-h: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--logo-h) * .26);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  line-height: 1;
+  white-space: nowrap;
+}
+.srs-logo .sl-symbol {
+  display: block;
+  flex-shrink: 0;
+  height: var(--logo-h);
+  width: auto;
+  overflow: visible;
+  color: var(--color-primary);
+  transition: color .45s ease;
+}
+.srs-logo .sl-word { font-weight: 800; letter-spacing: -0.035em; }
+.srs-logo .sl-word b { font-weight: inherit; color: var(--color-primary); transition: color .45s ease; }
+
+/* 1 · 티켓 — SR(서비스 요청) 티켓 + System */
+.srs-logo--ticket .sl-symbol { aspect-ratio: 64 / 44; }
+.srs-logo--ticket .sl-symbol text { font: 800 20px/1 var(--font-sans); letter-spacing: -0.4px; fill: #FFFFFF; }
+.srs-logo--ticket .sl-word { font-size: calc(var(--logo-h) * .88); }
+
+/* 2 · 진행 — 요청·접수·처리·완료 4단계를 브랜드 컬러 농도로 + SRSystem */
+.srs-logo--flow .sl-symbol { aspect-ratio: 1; }
+.srs-logo--flow .sl-word { font-size: calc(var(--logo-h) * .84); }
+@media (prefers-reduced-motion: no-preference) {
+  .sl-pie path {
+    transform-box: view-box;
+    transform-origin: 50% 50%;
+    animation: sl-pie-in .8s cubic-bezier(.2,.8,.2,1) both;
+    animation-delay: calc(var(--i) * 110ms + 120ms);
+  }
+}
+@keyframes sl-pie-in { from { opacity: 0; transform: rotate(-40deg) scale(.55); } }
+
+/* 3 · 모노그램 — 큰 SR + SERVICE / REQUEST / SYSTEM */
+.srs-logo--mono { --sr: calc(var(--logo-h) * 1.24); gap: calc(var(--logo-h) * .28); }
+.srs-logo--mono .sl-sr {
+  font-size: var(--sr);
+  font-weight: 800;
+  line-height: .74;
+  letter-spacing: -0.05em;
+  padding-right: .05em;
+  color: var(--color-primary);
+  transition: color .45s ease;
+}
+.srs-logo--mono .sl-rule { width: 1px; height: calc(var(--sr) * .74); background: var(--color-border-strong); }
+.srs-logo--mono .sl-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(var(--sr) * .74);
+  font-size: calc(var(--logo-h) * .31);
+  font-weight: 600;
+  line-height: .74;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+/* 심볼만 (아이콘 크기 비교용) */
+.srs-logo--symbol.srs-logo--mono { --sr: var(--logo-h); }
+
+/* 로그인 화면 크기 */
+.b-mark .srs-logo { --logo-h: 48px; }
+@media (max-width: 640px) { .b-mark .srs-logo { --logo-h: 38px; } }
+
+/* 리뷰 도크: 로고 전환 버튼 */
+.rd-logo-pill { padding: 0; border: 0; background: transparent; font: inherit; cursor: pointer; }
