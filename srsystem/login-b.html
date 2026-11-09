@@ -4,54 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🐴 로그인 | SRSystem — 시안 B</title>
-  <script>(function(){try{var t=localStorage.getItem('epTheme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+  <script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('epTheme');if(t)d.setAttribute('data-theme',t);var q=new URLSearchParams(location.search).get('brand'),b=(q==='poly'||q==='canb')?q:localStorage.getItem('srsBrand');d.setAttribute('data-brand',b==='canb'?'canb':'poly');}catch(e){d.setAttribute('data-brand','poly');}})();</script>
   <link rel="stylesheet" href="../styles/tokens.css">
   <link rel="stylesheet" href="../styles/common.css">
   <link rel="stylesheet" href="assets/auth.css">
+  <link rel="stylesheet" href="assets/brand.css">
   <style>
-    /* 시안 B — Sky : 톤온톤 하늘 + 흐르는 라인 위 중앙 카드 */
+    /* 시안 B — Sky (확정안) : 톤온톤 하늘 + 흐르는 리본 위 중앙 카드 + POLY/CANB 브랜드 탭 */
+    @property --b-glow-1 { syntax: '<color>'; inherits: false; initial-value: transparent; }
+    @property --b-glow-2 { syntax: '<color>'; inherits: false; initial-value: transparent; }
+
     body.v-b { background: var(--color-bg-subtle); }
     .b-sky {
+      --b-glow-1: var(--color-primary-a10);
+      --b-glow-2: var(--color-primary-a08);
       position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
       background:
-        radial-gradient(56% 48% at 50% 50%, var(--color-primary-a10), transparent 72%),
-        radial-gradient(36% 40% at 92% 0%, var(--color-primary-a08), transparent 70%),
-        radial-gradient(30% 36% at 4% 100%, var(--color-primary-a08), transparent 70%),
+        radial-gradient(56% 48% at 50% 50%, var(--b-glow-1), transparent 72%),
+        radial-gradient(36% 40% at 92% 0%, var(--b-glow-2), transparent 70%),
+        radial-gradient(30% 36% at 4% 100%, var(--b-glow-2), transparent 70%),
         linear-gradient(180deg, var(--color-bg-subtle) 0%, var(--color-bg) 100%);
+      transition: --b-glow-1 .6s ease, --b-glow-2 .6s ease;
     }
     .b-waves {
       position: absolute; left: -6%; bottom: -2%;
       width: 112%; height: 72%;
+      transition: opacity .6s ease;
     }
-    .b-waves path { fill: none; stroke: var(--color-primary); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+    .b-waves path { fill: none; stroke: var(--color-primary); stroke-width: 1.2; vector-effect: non-scaling-stroke; transition: stroke .6s ease; }
 
     .b-page { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
-    .b-top { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 var(--space-6) 0 var(--space-10); }
+    .b-top { display: flex; align-items: center; justify-content: space-between; height: 96px; padding: 0 var(--space-6) 0 var(--space-10); }
+    /* 로고 2배 (Poly 22→44px). CANB 마크는 Poly와 같은 너비가 되도록 높이 보정 */
+    .b-top .product { gap: var(--space-6); }
+    .b-top .product-logo { height: 44px; }
+    .b-top .logo-canb { height: 48.8px; }
+    .b-top .product-sep { height: 28px; }
+    .b-top .product-name { font-size: 30px; letter-spacing: -0.02em; }
+
     .b-main { display: grid; grid-template-columns: minmax(0, 460px); justify-content: center; align-items: center; padding: var(--space-6) var(--space-6) var(--space-10); }
     .b-card {
+      --b-card-line: var(--color-primary-a10);
+      --b-card-glow: var(--color-primary-a25);
       width: 100%; max-width: 460px;
-      padding: var(--space-10) var(--space-10) var(--space-8);
+      overflow: hidden;
       border-radius: var(--radius-xl);
       background: var(--color-bg);
-      border: 1px solid var(--color-primary-a10);
-      box-shadow: 0 1px 2px rgba(17,24,39,0.04), 0 32px 64px -24px var(--color-primary-a25);
+      border: 1px solid var(--b-card-line);
+      box-shadow: 0 1px 2px rgba(17,24,39,0.04), 0 32px 64px -24px var(--b-card-glow);
+      transition: border-color .6s ease, box-shadow .6s ease;
     }
+    .b-card-body { padding: var(--space-8) var(--space-10); }
     .b-card .auth-form { max-width: none; }
     .b-foot { display: flex; justify-content: center; gap: var(--space-2); padding: 0 var(--space-6) var(--space-6); font-size: 12px; color: var(--color-text-tertiary); }
 
+    /* CANB — 키트 규칙: 배경·테두리·그림자는 중립 회색, 마젠타는 로고·탭·버튼·포커스 링에만 */
+    [data-brand="canb"] .b-sky { --b-glow-1: rgba(0,0,0,0.05); --b-glow-2: rgba(0,0,0,0.035); }
+    [data-brand="canb"] .b-waves { opacity: .7; }
+    [data-brand="canb"] .b-waves path { stroke: var(--color-text-primary); }
+    [data-brand="canb"] .b-card { --b-card-line: var(--color-border); --b-card-glow: rgba(0,0,0,0.16); }
+
     [data-theme="dark"] body.v-b { background: var(--color-bg); }
     [data-theme="dark"] .b-sky {
+      --b-glow-1: var(--color-primary-a15);
+      --b-glow-2: var(--color-primary-a10);
       background:
-        radial-gradient(56% 48% at 50% 50%, var(--color-primary-a15), transparent 72%),
-        radial-gradient(36% 40% at 92% 0%, var(--color-primary-a10), transparent 70%),
+        radial-gradient(56% 48% at 50% 50%, var(--b-glow-1), transparent 72%),
+        radial-gradient(36% 40% at 92% 0%, var(--b-glow-2), transparent 70%),
         linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg) 100%);
     }
+    [data-brand="canb"][data-theme="dark"] .b-sky { --b-glow-1: rgba(255,255,255,0.05); --b-glow-2: rgba(255,255,255,0.035); }
     [data-theme="dark"] .b-card { background: var(--color-bg-subtle); border-color: var(--color-border); box-shadow: 0 32px 80px -24px rgba(0,0,0,0.7); }
 
     @media (max-width: 640px) {
-      .b-top { height: 60px; padding: 0 var(--space-3) 0 var(--space-5); }
+      .b-top { height: 72px; padding: 0 var(--space-3) 0 var(--space-5); }
+      .b-top .product { gap: var(--space-4); }
+      .b-top .product-logo { height: 32px; }
+      .b-top .logo-canb { height: 35.5px; }
+      .b-top .product-sep { height: 20px; }
+      .b-top .product-name { font-size: 22px; }
       .b-main { padding: var(--space-2) var(--space-4) var(--space-8); align-items: start; grid-template-columns: minmax(0, 1fr); }
-      .b-card { padding: var(--space-8) var(--space-6) var(--space-6); }
+      .b-card-body { padding: var(--space-6); }
     }
   </style>
 </head>
@@ -62,15 +95,21 @@
 
   <div class="b-page">
     <header class="b-top">
-      <a class="product " href="#" aria-label="SRSystem 홈">
-        <svg class="product-logo" role="img" aria-label="Poly"><use href="#poly-wordmark"/></svg>
+      <a class="product" href="#" aria-label="SRSystem 홈">
+        <svg class="product-logo logo-poly" role="img" aria-label="POLY"><use href="#poly-wordmark"/></svg>
+        <svg class="product-logo logo-canb" role="img" aria-label="CANB"><use href="#canb-wordmark"/></svg>
         <span class="product-sep" aria-hidden="true"></span>
         <span class="product-name">SRSystem</span>
       </a>
       <button type="button" class="icon-btn" id="theme-toggle" aria-label="다크 모드로 전환"></button>
     </header>
     <main class="b-main">
-      <section class="b-card">
+      <section class="b-card" aria-label="로그인">
+        <div class="brand-tabs" role="tablist" aria-label="브랜드 선택">
+          <button type="button" class="brand-tab" role="tab" id="brandTabPoly" data-brand-tab="poly" aria-controls="brandPanel" aria-selected="true" aria-label="POLY"><svg class="tab-logo-poly" aria-hidden="true"><use href="#poly-wordmark"/></svg></button>
+          <button type="button" class="brand-tab" role="tab" id="brandTabCanb" data-brand-tab="canb" aria-controls="brandPanel" aria-selected="false" aria-label="CANB" tabindex="-1"><svg class="tab-logo-canb" aria-hidden="true"><use href="#canb-wordmark"/></svg></button>
+        </div>
+        <div class="b-card-body" id="brandPanel" role="tabpanel" aria-labelledby="brandTabPoly">
         <div class="auth-form auth-enter">
           <div class="auth-head">
             <span class="auth-accent" aria-hidden="true"></span>
@@ -84,6 +123,7 @@
           </div>
 
           <form id="loginForm" novalidate>
+            <input type="hidden" name="brand" id="brandField" value="poly">
             <div class="form-group">
               <label class="form-label" for="loginId">아이디</label>
               <input class="form-input" id="loginId" name="loginId" type="text" autocomplete="username" placeholder="아이디를 입력하세요" required aria-describedby="loginIdError">
@@ -115,6 +155,7 @@
             <button type="button" class="link-btn" id="openRequest">관리자에게 권한 요청<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
           </div>
         </div>
+        </div>
       </section>
     </main>
     <footer class="b-foot"><span>© EduPoly</span><span aria-hidden="true">·</span><span>SRSystem</span></footer>
@@ -122,5 +163,6 @@
 
   <script src="../js/layout.js"></script>
   <script src="assets/auth.js"></script>
+  <script src="assets/brand.js"></script>
 </body>
 </html>
